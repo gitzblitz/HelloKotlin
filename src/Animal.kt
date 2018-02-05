@@ -1,7 +1,11 @@
 open class Animal() {
+
+    //public == default
+    //private = will not be visible outside the class
+    // protected = same as private + visible in subclasses
     var name: String? = null
     var colour: String? = null
-    var numLegs: Int? = null
+   private var numLegs: Int? = null
 
     constructor(name: String, colour: String, numLegs: Int) : this() {
         this.name = name
@@ -20,6 +24,13 @@ open class Animal() {
         println("Third constructor " + this.name)
     }
 
+    fun setNumLegs(num: Int) {
+        this.numLegs = num
+    }
+
+    open fun makeNoise() {
+        println("Animal noise")
+    }
     fun showAnimal() {
         println("Name is " + this.name)
         println("Colour is " + this.colour)
@@ -28,6 +39,18 @@ open class Animal() {
     }
 }
 
+class Cat : Animal {
+    constructor() : super() {
+        
+
+    }
+
+    override fun makeNoise() {
+        println("MEOOWWW!")
+        super.colour
+    }
+
+}
 
 class Lion : Animal {
     var numEyes: Int? = null
@@ -45,16 +68,22 @@ class Lion : Animal {
 
 fun main(args: Array<String>) {
 
+    var newAnimal = Animal("Animal", "Brown")
+
+    newAnimal.setNumLegs(4)
+
+    newAnimal.showAnimal()
+
 //var animal = Animal("Animal", "brown")
 
-    var animal = Animal()
-    animal.colour= "brown"
-    animal.name = "Elephant"
-    animal.numLegs = 4
-
-    var animal2 = Animal("Another animal", "blue", 6)
-//    animal.showAnimal()
-    animal2.showAnimal()
+//    var animal = Animal()
+//    animal.colour = "brown"
+//    animal.name = "Elephant"
+//    animal.numLegs = 4
+//
+//    var animal2 = Animal("Another animal", "blue", 6)
+////    animal.showAnimal()
+//    animal2.showAnimal()
 //    var animal = Animal("Dog", "brown", 4)
 //
 //    var lion = Lion()
