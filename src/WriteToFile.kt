@@ -1,16 +1,21 @@
+import java.io.FileReader
 import java.io.FileWriter
+import java.nio.file.Files
+import java.nio.file.Paths
 
 fun main(args: Array<String>) {
 
-    println("Enter a message")
-    var message = readLine().toString()
-
-    if (message.equals("")) {
-        println("Please enter a message")
-    } else {
-        WriteToFile(message)
-    }
-
+//    readFile()
+    readFromFile()
+//    println("Enter a message")
+//    var message = readLine().toString()
+//
+//    if (message.equals("")) {
+//        println("Please enter a message")
+//    } else {
+//        WriteToFile(message)
+//    }
+//
 
 }
 
@@ -26,4 +31,26 @@ fun WriteToFile(message: String): Unit {
         println("Exception $ex")
     }
 
+}
+
+fun readFile(): Unit {
+    var reader = FileReader("message.txt")
+    var readMessage:String? =null
+    var char: Int? = null
+    try {
+        do {
+            char = reader.read()
+            print(char.toChar())
+
+        }while (char != -1)
+
+    } catch (ex: Exception) {
+        println(ex.message)
+    }
+
+}
+
+fun readFromFile(): Unit {
+    val stream = Files.newInputStream(Paths.get("message.txt"))
+    stream.buffered().reader().use { reader -> println(reader.readText()) }
 }
